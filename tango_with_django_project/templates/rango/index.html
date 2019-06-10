@@ -13,6 +13,28 @@
       hey there partner! <br />
       <strong>{{ boldmessage }}</strong><br />
     </div>
+    <div>
+      {% if categories %}
+      <ul>
+        {% for category in categories %}
+        <li><a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        <strong>No hay categorias</strong>
+      {% endif %}
+    </div>
+    <div>
+      {% if pages %}
+      <ul>
+        {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <strong>No hay páginas para esta categoría</strong>
+      {% endif %}
+    </div>
 
     <div>
       <a href="/rango/about/">About</a><br />
