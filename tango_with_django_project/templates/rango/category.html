@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Rango</title>
-  </head>
-  <body>
-        <div class="">
-          {% if category%}
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  {{ category.name}}
+{% endblock %}
+
+{% block body_block %}
+        {% if category%}
           <h1>{{ category.name }}</h1>
           {% if pages %}
           <ul>
@@ -15,16 +15,10 @@
             {% endfor %}
           </ul>
           {% else %}
-          <strong>No hay páginas para esta categoría</strong>
+            <strong>No hay páginas para esta categoría</strong>
           {% endif %}
-          {% else %}
+          <a href="{% url 'add_page' category.slug %}">Add a Page</a>
+        {% else %}
            No existe la categoría.
-          {% endif %}
-        </div>
-        <div>
-          <a href="/rango/category/{{category.slug}}/add_page/">Add Page</a> <br/>
-          <a href="/rango/">Volver al inicio.</a>
-
-        </div>
-  </body>
-</html>
+        {% endif %}
+{% endblock %}

@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>About</title>
-  </head>
-  <body>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  {{ category.name}}
+{% endblock %}
+
+{% block body_block %}
     <h1>Acerca de....</h1>
     <strong>{{ mensajeAbout }}</strong><br />
     <img src="{{ MEDIA_URL}}Django_1.jpg" alt="Django_1">
 
-  </body>
-</html>
+{% endblock %}
