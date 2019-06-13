@@ -1,13 +1,8 @@
 <!DOCTYPE html>
+{% extends 'rango/base.html' %}
 
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Rango</title>
-  </head>
-  <body>
     {% load staticfiles %}
-
+    {% block body_block %}
     <h1>Holaaaaa</h1>
     <div>
       hey there partner! <br />
@@ -37,13 +32,7 @@
     </div>
 
     <div>
-      <a href="/rango/add_category">Agregar nueva categoría.</a> <br>
-      <a href="/rango/add_page">Agregar nueva página.</a> <br>
-      <a href="/rango/about/">About</a><br />
       <img src="{% static "images/Django_Reinhardt.jpg" %}"
 alt="Picture of Django" />
     </div>
-
-
-  </body>
-</html>
+    {% endblock %}
