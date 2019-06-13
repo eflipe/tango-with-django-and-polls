@@ -1,0 +1,7 @@
+*.pyc
+*.jpg
+*~
+__pycache__
+tangoDjango
+db.sqlite3
+.DS_Store
