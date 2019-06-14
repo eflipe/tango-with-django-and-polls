@@ -1,7 +1,12 @@
 *.pyc
-*.jpg
 *~
 __pycache__
-tangoDjango
+myvenv
 db.sqlite3
+/static
 .DS_Store
+*.jpg
+tangoDjango
+
+
+
