@@ -185,3 +185,19 @@ def goto_url(request):
         except:
             pass
     return redirect(url)
+
+
+@login_required
+def register_profile(request):
+    form = UserProfileForm()
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+        user_profile = form.save(commit=False)
+        user_profile.user = request.user
+        user_profile.save()
+        return redirect('index')
+    else:
+        print(form.errors)
+        context_dict = {'form': form}
+    return render(request, 'rango/profile_registration.html', context_dict)
