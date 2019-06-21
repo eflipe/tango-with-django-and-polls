@@ -1,5 +1,7 @@
 {% extends "rango/base.html" %}
-{% block title %}Add Page{% endblock %}
+{% block title %}
+  Add Page
+{% endblock %}
 {% block body_block %}
 <div class="jumbotron p-4">
   <div class="container">
@@ -11,12 +13,12 @@
     <form role="form" id="page_form" method="post" action="/rango/category/{{category.slug}}/add_page/">
       {% csrf_token %}
       {% for hidden in form.hidden_fields %}
-      {{ hidden }}
+        {{ hidden }}
       {% endfor %}
       {% for field in form.visible_fields %}
-      {{ field.errors }}
-      {{ field.help_text }}<br />
-      {{ field }}<br />
+        {{ field.errors }}
+        {{ field.help_text }}<br />
+        {{ field }}<br />
       <div class="p-2"></div>
       {% endfor %}
       <br />
