@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.views import View
+from django.utils.decorators import method_decorator
+
 
 
 def index(request):
@@ -28,12 +31,12 @@ def index(request):
     return response
 
 
-def about(request):
-    if request.session.test_cookie_worked():
-        print("TEST COOKIE WORKED!")
-        request.session.delete_test_cookie()
-    context_dict = {'mensajeAbout': "Este es el about"}
-    return render(request, 'rango/about.html', context=context_dict)
+# def about(request):
+#     if request.session.test_cookie_worked():
+#         print("TEST COOKIE WORKED!")
+#         request.session.delete_test_cookie()
+#     context_dict = {'mensajeAbout': "Este es el about"}
+#     return render(request, 'rango/about.html', context=context_dict)
 
 
 def show_category(request, category_name_slug):
@@ -50,18 +53,38 @@ def show_category(request, category_name_slug):
     return render(request, 'rango/category.html', context_dict)
 
 
-def add_category(request):
-    form = CategoryForm()
+# def add_category(request):
+#     form = CategoryForm()
+#
+#     if request.method == 'POST':
+#         form = CategoryForm(request.POST)
+#
+#         if form.is_valid():
+#             form.save(commit=True)
+#             return index(request)
+#         else:
+#             print(form.errors)
+#     return render(request, 'rango/add_category.html', {'form': form})
 
-    if request.method == 'POST':
+
+class AddCategoryView(View):
+
+    @method_decorator(login_required)
+    def get(self, request):
+        form = CategoryForm()
+        return render(request, 'rango/add_category.html', {'form': form})
+
+    @method_decorator(login_required)
+    def post(self, request):
+        form = CategoryForm()
         form = CategoryForm(request.POST)
-
         if form.is_valid():
             form.save(commit=True)
             return index(request)
         else:
             print(form.errors)
-    return render(request, 'rango/add_category.html', {'form': form})
+        return render(request, 'rango/add_category.html', {'form': form})
+
 
 
 def add_page(request, category_name_slug):
@@ -201,3 +224,11 @@ def register_profile(request):
         print(form.errors)
         context_dict = {'form': form}
     return render(request, 'rango/profile_registration.html', context_dict)
+
+
+class AboutView(View):
+    def get(self, request):
+        # view logic
+        visitor_cookie_handler(request)
+        return render(request, 'rango/about.html',
+                      context={'visits': request.session['visits']})
