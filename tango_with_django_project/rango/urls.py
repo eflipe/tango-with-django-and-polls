@@ -1,6 +1,8 @@
 from django.urls import path
 from rango import views
 from rango.views import AboutView, AddCategoryView
+from rango.views import ProfileView
+
 
 app_name = 'rango'
 urlpatterns = [
@@ -18,4 +20,7 @@ urlpatterns = [
     path('goto/', views.goto_url, name='goto'),
     path('register_profile/', views.register_profile, name='register_profile'),
     path('about/', AboutView.as_view(), name='about'),
+    path('profile/<username>/', ProfileView.as_view(), name='profile'),
+    path('profiles/', views.list_profiles, name='list_profiles'),
+
 ]
