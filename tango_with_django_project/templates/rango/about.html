@@ -9,5 +9,12 @@
     <h1>Acerca de....</h1>
     <strong>{{ mensajeAbout }}</strong><br />
     <img src="{{ MEDIA_URL}}Django_1.jpg" alt="Django_1">
-
+    <br>
+    <button class="btn btn-primary"
+    onClick="alert('You clicked the button using inline JavaScript.');">
+    Click Me - I run JavaScript
+    </button>
+    <button class="btn btn-primary" id="about-btn">
+    Click Me - I'm JavaScript on Ice
+    </button>
 {% endblock %}
